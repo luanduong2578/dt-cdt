@@ -1,4 +1,4 @@
-﻿using DT_CDT.DTO;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -30,10 +30,19 @@ namespace DT_CDT.DAO
 
         public bool InsertChucDanh(string CDTen, string CDVietTat)
         {
-            string query = string.Format("INSERT INTO HSOFTDKBD.DT_CHUCDANH (CHUCDANHID,CHUCDANHTEN,CHUCDANHVIETTAT) VALUES ((select max(CHUCDANHID)+1 from HSOFTDKBD.DT_CHUCDANH),'{0}','{1}')", CDTen, CDVietTat);
-            int result = DataProvider.Instance.ExecuteNonQuery(query);
-
-            return result > 0;
+            int result = 0;
+            if (Count_ID() == 0)
+            {
+                string query = string.Format("INSERT INTO HSOFTDKBD.DT_CHUCDANH (CHUCDANHID,CHUCDANHTEN,CHUCDANHVIETTAT) VALUES (1,'{0}','{1}')", CDTen, CDVietTat);
+                result = DataProvider.Instance.ExecuteNonQuery(query);
+                return result > 0;
+            }
+            else
+            {
+                string query = string.Format("INSERT INTO HSOFTDKBD.DT_CHUCDANH (CHUCDANHID,CHUCDANHTEN,CHUCDANHVIETTAT) VALUES ((select max(CHUCDANHID)+1 from HSOFTDKBD.DT_CHUCDANH),'{0}','{1}')", CDTen, CDVietTat);
+                result = DataProvider.Instance.ExecuteNonQuery(query);
+                return result > 0;
+            }
         }
         public bool UpdateChucDanh(string CDTen, string CDVietTat, int id)
         {
@@ -67,19 +76,15 @@ namespace DT_CDT.DAO
             return DataProvider.Instance.ExecuteQuery(query);
         }
 
-//
-        public List<ChucDanh> GetDSChucDanh()
+
+        public int Count_ID()
         {
-            List<ChucDanh> list = new List<ChucDanh>();
-            string query = "select * from HSOFTDKBD.DT_CHUCDANH";
-            DataTable data = DataProvider.Instance.ExecuteQuery(query);
-            foreach (DataRow item in data.Rows)
-            {
-                ChucDanh CD = new ChucDanh(item);
-                list.Add(CD);
-            }
-            return list;
+            string query = string.Format("select COUNT(CHUCDANHID) from HSOFTDKBD.DT_CHUCDANH");
+            int data = Convert.ToInt32(DataProvider.Instance.ExecuteScalar(query));
+            return data;
         }
+
+
 
 
     }

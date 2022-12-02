@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSet1" targetNamespace="http://tempuri.org/DataSet1.xsd" xmlns:mstns="http://tempuri.org/DataSet1.xsd" xmlns="http://tempuri.org/DataSet1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSet1" msprop:Generator_UserDSName="DataSet1">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DsHV" msprop:Generator_TableClassName="DsHVDataTable" msprop:Generator_TableVarName="tableDsHV" msprop:Generator_TablePropName="DsHV" msprop:Generator_RowDeletingName="DsHVRowDeleting" msprop:Generator_RowChangingName="DsHVRowChanging" msprop:Generator_RowEvHandlerName="DsHVRowChangeEventHandler" msprop:Generator_RowDeletedName="DsHVRowDeleted" msprop:Generator_UserTableName="DsHV" msprop:Generator_RowChangedName="DsHVRowChanged" msprop:Generator_RowEvArgName="DsHVRowChangeEvent" msprop:Generator_RowClassName="DsHVRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="HOCVIENID" msprop:Generator_ColumnVarNameInTable="columnHOCVIENID" msprop:Generator_ColumnPropNameInRow="HOCVIENID" msprop:Generator_ColumnPropNameInTable="HOCVIENIDColumn" msprop:Generator_UserColumnName="HOCVIENID" type="xs:int" minOccurs="0" />
+              <xs:element name="HOCVIENHOTEN" msprop:Generator_ColumnVarNameInTable="columnHOCVIENHOTEN" msprop:Generator_ColumnPropNameInRow="HOCVIENHOTEN" msprop:Generator_ColumnPropNameInTable="HOCVIENHOTENColumn" msprop:Generator_UserColumnName="HOCVIENHOTEN" type="xs:string" minOccurs="0" />
+              <xs:element name="HOCVIENNAMSINH" msprop:Generator_ColumnVarNameInTable="columnHOCVIENNAMSINH" msprop:Generator_ColumnPropNameInRow="HOCVIENNAMSINH" msprop:Generator_ColumnPropNameInTable="HOCVIENNAMSINHColumn" msprop:Generator_UserColumnName="HOCVIENNAMSINH" type="xs:string" minOccurs="0" />
+              <xs:element name="HOCVIENPHAI" msprop:Generator_ColumnVarNameInTable="columnHOCVIENPHAI" msprop:Generator_ColumnPropNameInRow="HOCVIENPHAI" msprop:Generator_ColumnPropNameInTable="HOCVIENPHAIColumn" msprop:Generator_UserColumnName="HOCVIENPHAI" type="xs:string" minOccurs="0" />
+              <xs:element name="HOCVIENDIENTHOAI" msprop:Generator_ColumnVarNameInTable="columnHOCVIENDIENTHOAI" msprop:Generator_ColumnPropNameInRow="HOCVIENDIENTHOAI" msprop:Generator_ColumnPropNameInTable="HOCVIENDIENTHOAIColumn" msprop:Generator_UserColumnName="HOCVIENDIENTHOAI" type="xs:string" minOccurs="0" />
+              <xs:element name="HOCVIENEMAIL" msprop:Generator_ColumnVarNameInTable="columnHOCVIENEMAIL" msprop:Generator_ColumnPropNameInRow="HOCVIENEMAIL" msprop:Generator_ColumnPropNameInTable="HOCVIENEMAILColumn" msprop:Generator_UserColumnName="HOCVIENEMAIL" type="xs:string" minOccurs="0" />
+              <xs:element name="HOCVIENGHICHU" msprop:Generator_ColumnVarNameInTable="columnHOCVIENGHICHU" msprop:Generator_ColumnPropNameInRow="HOCVIENGHICHU" msprop:Generator_ColumnPropNameInTable="HOCVIENGHICHUColumn" msprop:Generator_UserColumnName="HOCVIENGHICHU" type="xs:string" minOccurs="0" />
+              <xs:element name="IDCHUCDANH" msprop:Generator_ColumnVarNameInTable="columnIDCHUCDANH" msprop:Generator_ColumnPropNameInRow="IDCHUCDANH" msprop:Generator_ColumnPropNameInTable="IDCHUCDANHColumn" msprop:Generator_UserColumnName="IDCHUCDANH" type="xs:int" minOccurs="0" />
+              <xs:element name="CHUCDANHTEN" msprop:Generator_ColumnVarNameInTable="columnCHUCDANHTEN" msprop:Generator_ColumnPropNameInRow="CHUCDANHTEN" msprop:Generator_ColumnPropNameInTable="CHUCDANHTENColumn" msprop:Generator_UserColumnName="CHUCDANHTEN" type="xs:string" minOccurs="0" />
+              <xs:element name="IDDONVI" msprop:Generator_ColumnVarNameInTable="columnIDDONVI" msprop:Generator_ColumnPropNameInRow="IDDONVI" msprop:Generator_ColumnPropNameInTable="IDDONVIColumn" msprop:Generator_UserColumnName="IDDONVI" type="xs:int" minOccurs="0" />
+              <xs:element name="DONVITEN" msprop:Generator_ColumnVarNameInTable="columnDONVITEN" msprop:Generator_ColumnPropNameInRow="DONVITEN" msprop:Generator_ColumnPropNameInTable="DONVITENColumn" msprop:Generator_UserColumnName="DONVITEN" type="xs:string" minOccurs="0" />
+              <xs:element name="IDKHOAPHONG" msprop:Generator_ColumnVarNameInTable="columnIDKHOAPHONG" msprop:Generator_ColumnPropNameInRow="IDKHOAPHONG" msprop:Generator_ColumnPropNameInTable="IDKHOAPHONGColumn" msprop:Generator_UserColumnName="IDKHOAPHONG" type="xs:string" minOccurs="0" />
+              <xs:element name="KHOAPHONGTEN" msprop:Generator_ColumnVarNameInTable="columnKHOAPHONGTEN" msprop:Generator_ColumnPropNameInRow="KHOAPHONGTEN" msprop:Generator_ColumnPropNameInTable="KHOAPHONGTENColumn" msprop:Generator_UserColumnName="KHOAPHONGTEN" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

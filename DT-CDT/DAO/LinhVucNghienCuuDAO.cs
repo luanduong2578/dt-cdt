@@ -1,4 +1,4 @@
-﻿using DT_CDT.DTO;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -26,21 +26,6 @@ namespace DT_CDT.DAO
         }
 
 
-        //
-        public List<LinhVucNghienCuu> GetDSLinhVucNghienCuu()
-        {
-            List<LinhVucNghienCuu> list = new List<LinhVucNghienCuu>();
 
-            string query = "select * from LinhVucNghienCuu";
-            DataTable data = DataProvider.Instance.ExecuteQuery(query);
-
-            foreach (DataRow item in data.Rows)
-            {
-                LinhVucNghienCuu lvnc = new LinhVucNghienCuu(item);
-                list.Add(lvnc);
-            }
-
-            return list;
-        }
     }
 }

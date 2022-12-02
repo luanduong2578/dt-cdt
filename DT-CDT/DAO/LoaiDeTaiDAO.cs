@@ -1,5 +1,4 @@
-﻿using DT_CDT.DTO;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -24,21 +23,6 @@ namespace DT_CDT.DAO
             string query = "select IDLOAIDETAI,LOAIDETAITEN from HSOFTDKBD.DT_LOAIDETAI";
             return DataProvider.Instance.ExecuteQuery(query);
         }
-//
-        public List<LoaiDeTai> GetDSLoaiDeTai()
-        {
-            List<LoaiDeTai> list = new List<LoaiDeTai>();
 
-            string query = "select * from LoaiDeTai";
-            DataTable data = DataProvider.Instance.ExecuteQuery(query);
-
-            foreach (DataRow item in data.Rows)
-            {
-                LoaiDeTai lvnc = new LoaiDeTai(item);
-                list.Add(lvnc);
-            }
-
-            return list;
-        }
     }
 }

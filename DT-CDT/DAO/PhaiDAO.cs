@@ -1,4 +1,4 @@
-﻿using DT_CDT.DTO;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -24,24 +24,5 @@ namespace DT_CDT.DAO
             string query = "SELECT PHAIID, PHAITEN from HSOFTDKBD.DT_PHAI";
             return DataProvider.Instance.ExecuteQuery(query);
         }
-
-
-//
-        public List<Phai> GetDSPhai()
-        {
-            List<Phai> list = new List<Phai>();
-
-            string query = "select * from Phai";
-            DataTable data = DataProvider.Instance.ExecuteQuery(query);
-
-            foreach (DataRow item in data.Rows)
-            {
-                Phai phai = new Phai(item);
-                list.Add(phai);
-            }
-
-            return list;
-        }
-     
-    }
+   }
 }

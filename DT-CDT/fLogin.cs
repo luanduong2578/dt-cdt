@@ -24,10 +24,8 @@ namespace DT_CDT
             string password = txbPassWord.Text;
             if (Login(username, password))
             {
-                fMain f = new fMain();
-                this.Hide();
-                f.ShowDialog();
-                this.Show();
+                this.Close();
+
             }
             else
             {

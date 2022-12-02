@@ -1,4 +1,4 @@
-﻿using DT_CDT.DTO;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -27,21 +27,6 @@ namespace DT_CDT.DAO
             return DataProvider.Instance.ExecuteQuery(query);
         }
 
-        //
-        public List<CapDeTai> GetDSCapDeTai()
-        {
-            List<CapDeTai> list = new List<CapDeTai>();
 
-            string query = "select * from CapDeTai";
-            DataTable data = DataProvider.Instance.ExecuteQuery(query);
-
-            foreach (DataRow item in data.Rows)
-            {
-                CapDeTai lvnc = new CapDeTai(item);
-                list.Add(lvnc);
-            }
-
-            return list;
-        }
     }
 }

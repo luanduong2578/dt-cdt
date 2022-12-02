@@ -50,13 +50,13 @@
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(400, 136);
+            this.panel1.Size = new System.Drawing.Size(314, 108);
             this.panel1.TabIndex = 0;
             // 
             // btnExit
             // 
             this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnExit.Location = new System.Drawing.Point(319, 103);
+            this.btnExit.Location = new System.Drawing.Point(173, 82);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 23);
             this.btnExit.TabIndex = 3;
@@ -66,7 +66,7 @@
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(238, 103);
+            this.btnLogin.Location = new System.Drawing.Point(62, 82);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(75, 23);
             this.btnLogin.TabIndex = 2;
@@ -78,16 +78,16 @@
             // 
             this.panel3.Controls.Add(this.txbPassWord);
             this.panel3.Controls.Add(this.label2);
-            this.panel3.Location = new System.Drawing.Point(3, 53);
+            this.panel3.Location = new System.Drawing.Point(3, 39);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(394, 44);
+            this.panel3.Size = new System.Drawing.Size(311, 37);
             this.panel3.TabIndex = 1;
             // 
             // txbPassWord
             // 
             this.txbPassWord.Location = new System.Drawing.Point(139, 10);
             this.txbPassWord.Name = "txbPassWord";
-            this.txbPassWord.Size = new System.Drawing.Size(252, 20);
+            this.txbPassWord.Size = new System.Drawing.Size(158, 20);
             this.txbPassWord.TabIndex = 1;
             this.txbPassWord.Text = "1";
             // 
@@ -107,14 +107,14 @@
             this.panel2.Controls.Add(this.label1);
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(394, 44);
+            this.panel2.Size = new System.Drawing.Size(311, 36);
             this.panel2.TabIndex = 0;
             // 
             // txbUserName
             // 
             this.txbUserName.Location = new System.Drawing.Point(139, 10);
             this.txbUserName.Name = "txbUserName";
-            this.txbUserName.Size = new System.Drawing.Size(252, 20);
+            this.txbUserName.Size = new System.Drawing.Size(158, 20);
             this.txbUserName.TabIndex = 1;
             this.txbUserName.Text = "1";
             // 
@@ -134,11 +134,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnExit;
-            this.ClientSize = new System.Drawing.Size(424, 157);
+            this.ClientSize = new System.Drawing.Size(338, 132);
+            this.ControlBox = false;
             this.Controls.Add(this.panel1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "fLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Đăng nhập";
+            this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fLogin_FormClosing);
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);

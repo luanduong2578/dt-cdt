@@ -1,5 +1,4 @@
-﻿using DT_CDT.DTO;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -26,21 +25,6 @@ namespace DT_CDT.DAO
             return DataProvider.Instance.ExecuteQuery(query);
         }
 
-//
-        public List<TinhTrangDeTai> GetDSTinhTrangDeTai()
-        {
-            List<TinhTrangDeTai> list = new List<TinhTrangDeTai>();
 
-            string query = "select * from TinhTrangDeTai";
-            DataTable data = DataProvider.Instance.ExecuteQuery(query);
-
-            foreach (DataRow item in data.Rows)
-            {
-                TinhTrangDeTai ttdt = new TinhTrangDeTai(item);
-                list.Add(ttdt);
-            }
-
-            return list;
-        }
     }
 }

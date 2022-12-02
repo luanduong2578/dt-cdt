@@ -1,4 +1,4 @@
-﻿using DT_CDT.DTO;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -26,36 +26,6 @@ namespace DT_CDT.DAO
             return DataProvider.Instance.ExecuteQuery(query);
         }
 
-        //
-        public List<NamNC> GetDSNamNC()
-        {
-            List<NamNC> list = new List<NamNC>();
 
-            string query = "select * from NamNC";
-            DataTable data = DataProvider.Instance.ExecuteQuery(query);
-
-            foreach (DataRow item in data.Rows)
-            {
-                NamNC nam = new NamNC(item);
-                list.Add(nam);
-            }
-
-            return list;
-        }
-        public List<NamNC> GetDSNamHCK()
-        {
-            List<NamNC> list = new List<NamNC>();
-
-            string query = "select * from NamNC";
-            DataTable data = DataProvider.Instance.ExecuteQuery(query);
-
-            foreach (DataRow item in data.Rows)
-            {
-                NamNC nam = new NamNC(item);
-                list.Add(nam);
-            }
-
-            return list;
-        }
     }
 }

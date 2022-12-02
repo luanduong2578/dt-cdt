@@ -1,4 +1,4 @@
-﻿using DT_CDT.DTO;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -71,27 +71,19 @@ namespace DT_CDT.DAO
         
         public DataTable loadKPandKPanBV()
            {
-               string query = "select KhoaPhongid, KhoaPhongTen ||' - '|| (select dv.DonViTen from HSOFTDKBD.DT_BENHVIEN dv where dv.DonViid = KP.IdDonVi) as KHOA_PHONG_DAO_TAO from HSOFTDKBD.DT_KHOAPHONG KP";
+               string query = "select KhoaPhongid, KhoaPhongTen KHOA_PHONG_DAO_TAO from HSOFTDKBD.DT_KHOAPHONG KP ORDER BY KhoaPhongTen ASC";
                return DataProvider.Instance.ExecuteQuery(query);
            }
+//        public DataTable loadKPandKPanBV1()
+//        {
+//            string query = "select KhoaPhongid, KhoaPhongTen ||' - '|| (select dv.DonViTen from HSOFTDKBD.DT_BENHVIEN dv where dv.DonViid = KP.IdDonVi) as KHOA_PHONG_DAO_TAO from HSOFTDKBD.DT_KHOAPHONG KP";
+//            return DataProvider.Instance.ExecuteQuery(query);
+//        }
 
         public DataTable LoadListKhoaPhong()
         {
-            string query = "select KHOAPHONGID, IDDONVI, KHOAPHONGTEN, KHOAPHONGVIETTAT FROM HSOFTDKBD.DT_KHOAPHONG";
+            string query = "select KHOAPHONGID,  KHOAPHONGTEN FROM HSOFTDKBD.DT_KHOAPHONG ORDER BY KHOAPHONGTEN ASC";
             return DataProvider.Instance.ExecuteQuery(query);
-        }
-        //
-        public List<KhoaPhong> GetDSKhoaPhong()
-        {
-            List<KhoaPhong> list = new List<KhoaPhong>();
-            string query = "select * from HSOFTDKBD.DT_KHOAPHONG";
-            DataTable data = DataProvider.Instance.ExecuteQuery(query);
-            foreach (DataRow item in data.Rows)
-            {
-                KhoaPhong kp = new KhoaPhong(item);
-                list.Add(kp);
-            }
-            return list;
         }
 
     }

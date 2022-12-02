@@ -1,4 +1,4 @@
-﻿using DT_CDT.DTO;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -21,7 +21,7 @@ namespace DT_CDT.DAO
 
         public DataTable LoadHocVien()
         {
-            string query = "SELECT HOCVIENID as MA, HOCVIENHOTEN as HO_TEN, HOCVIENNAMSINH as NGAY_SINH, PHAITEN as PHAI, DONVITEN as BENH_VIEN ,KHOAPHONGTEN as KHOA_PHONG, CHUCDANHTEN  as CHUC_DANH,HOCVIENDIENTHOAI  as DIEN_THOAI,HOCVIENEMAIL as EMAIL,HOCVIENGHICHU as GHI_CHU from HSOFTDKBD.DT_HOCVIEN hv inner join HSOFTDKBD.DT_BENHVIEN  dv on hv.IDDONVI = dv.DONVIID	inner join HSOFTDKBD.DT_CHUCDANH cd on cd.CHUCDANHID = hv.IDCHUCDANH left join HSOFTDKBD.DT_KHOAPHONG kp on kp.KHOAPHONGID = hv.IDKHOAPHONG inner join HSOFTDKBD.DT_PHAI p on p.PHAITEN = hv.HOCVIENPHAI";
+            string query = "SELECT HOCVIENID as MA, HOCVIENHOTEN as HO_TEN, HOCVIENNAMSINH as NGAY_SINH, PHAITEN as PHAI, DONVITEN as BENH_VIEN ,KHOAPHONGTEN as KHOA_PHONG, CHUCDANHTEN  as CHUC_DANH,HOCVIENDIENTHOAI  as DIEN_THOAI,HOCVIENEMAIL as EMAIL,HOCVIENGHICHU as GHI_CHU from HSOFTDKBD.DT_HOCVIEN hv inner join HSOFTDKBD.DT_BENHVIEN  dv on hv.IDDONVI = dv.DONVIID	inner join HSOFTDKBD.DT_CHUCDANH cd on cd.CHUCDANHID = hv.IDCHUCDANH left join HSOFTDKBD.DT_KHOAPHONG kp on kp.KHOAPHONGID = hv.IDKHOAPHONG inner join HSOFTDKBD.DT_PHAI p on p.PHAITEN = hv.HOCVIENPHAI ORDER BY HOCVIENID ASC";
             return DataProvider.Instance.ExecuteQuery(query);
         }
         public DataTable SearchHVbyTenHV(string tenhv)
@@ -60,19 +60,69 @@ namespace DT_CDT.DAO
             return result > 0;
         }
 
- 
+        public bool count_IDHV_in_fNCKH(int idhv)
+        {
+            string query = string.Format("select count(*) from  HSOFTDKBD.DT_NCKH   where  CONGSU1 = {0} OR CONGSU2 = {1} OR CONGSU3 = {2} OR CONGSU4 = {3}",idhv,idhv,idhv,idhv);
+            int data = Convert.ToInt32(DataProvider.Instance.ExecuteScalar(query));
+            return data >0;
+        }
+        public bool count_IDHV_in_fHOCCHUYENKHOA(int idhv)
+        {
+            string query = string.Format("select count(*) from HSOFTDKBD.DT_HOCCHUYENKHOA   where HCKHOCVIENID = {0}", idhv);
+            int data = Convert.ToInt32(DataProvider.Instance.ExecuteScalar(query));
+            return data > 0;
+        }
+        public bool count_IDHV_in_fDSHOCVIENDTLT(int idhv)
+        {
+            string query = string.Format("select count(*) from HSOFTDKBD.DT_DSHOCVIENDTTL where IDHOCVIEN = {0}", idhv);
+            int data = Convert.ToInt32(DataProvider.Instance.ExecuteScalar(query));
+            return data > 0;
+        }
+        public bool count_IDHV_in_fDSHOCVIENSHKH(int idhv)
+        {
+            string query = string.Format("select count(*) from HSOFTDKBD.DT_DSHOCVIENSHKH where IDHOCVIEN = {0}", idhv);
+            int data = Convert.ToInt32(DataProvider.Instance.ExecuteScalar(query));
+            return data > 0;
+        }
+        
+        public bool count_IDHV_in_fCAPCHUNGNHAN(int idhv)
+        {
+            string query = string.Format("select count(*) from HSOFTDKBD.DT_CAPCHUNGNHAN where IDHOCVIEN = {0}", idhv);
+            int data = Convert.ToInt32(DataProvider.Instance.ExecuteScalar(query));
+            return data > 0;
+        }
+        public int KiemTraHVDaTonTai(string HOCVIENHOTEN,string HOCVIENPHAI,string HOCVIENNAMSINH, int IDCHUCDANH, int IDDONVI, int IDKHOAPHONG)
+        {
+            string query = string.Format("select count(*) from HSOFTDKBD.DT_HOCVIEN where HOCVIENHOTEN = '{0}' and HOCVIENPHAI = '{1}' and HOCVIENNAMSINH = '{2}' and IDCHUCDANH = {3} and IDDONVI = {4} and IDKHOAPHONG = {5}", HOCVIENHOTEN, HOCVIENPHAI, HOCVIENNAMSINH, IDCHUCDANH, IDDONVI, IDKHOAPHONG);
+            int data = Convert.ToInt32(DataProvider.Instance.ExecuteScalar(query));
+            return data;
+        }
+
+
         public DataTable LoadHocVienAndKhoaPhong()
         {
-            string query = "SELECT HV.HOCVIENID, HV.HOCVIENHOTEN  ||' - '|| (select KP.KHOAPHONGVIETTAT from HSOFTDKBD.DT_KHOAPHONG KP where KP.KHOAPHONGID = HV.IDKHOAPHONG) AS HOTENHV from HSOFTDKBD.DT_HOCVIEN HV";
+            string query = "SELECT HV.HOCVIENID, HV.HOCVIENHOTEN AS HOTENHV from HSOFTDKBD.DT_HOCVIEN HV ORDER BY HOCVIENHOTEN ASC";
             return DataProvider.Instance.ExecuteQuery(query);
         }
 
+//        public DataTable LoadHocVienAndKhoaPhong()
+//        {
+//            string query = "SELECT HV.HOCVIENID, HV.HOCVIENHOTEN  ||' - '|| (select KP.KHOAPHONGVIETTAT from HSOFTDKBD.DT_KHOAPHONG KP where KP.KHOAPHONGID = HV.IDKHOAPHONG) AS HOTENHV from HSOFTDKBD.DT_HOCVIEN HV";
+//            return DataProvider.Instance.ExecuteQuery(query);
+//        }
+
         public DataTable loadHVandKPanDVCT()
         {
-            string query = "SELECT HOCVIENID, HOCVIENHOTEN  ||' - '|| (select KHOAPHONGVIETTAT from HSOFTDKBD.DT_KHOAPHONG kp where kp.KHOAPHONGID = hv.IDKHOAPHONG) + ' - ' + (select dv.DONVITEN from HSOFTDKBD.DT_BENHVIEN dv where dv.DONVIID = hv.IDDONVI) as [HV] from HSOFTDKBD.DT_HOCVIEN hv";
+            string query = "SELECT HOCVIENID, HOCVIENHOTEN as HV from HSOFTDKBD.DT_HOCVIEN hv ORDER BY HOCVIENHOTEN ASC";
             return DataProvider.Instance.ExecuteQuery(query);
         }
-       
+
+//        public DataTable loadHVandKPanDVCT()
+//        {
+//            string query = "SELECT HOCVIENID, HOCVIENHOTEN  ||' - '|| (select KHOAPHONGVIETTAT from HSOFTDKBD.DT_KHOAPHONG kp where kp.KHOAPHONGID = hv.IDKHOAPHONG) + ' - ' + (select dv.DONVITEN from HSOFTDKBD.DT_BENHVIEN dv where dv.DONVIID = hv.IDDONVI) as [HV] from HSOFTDKBD.DT_HOCVIEN hv";
+//            return DataProvider.Instance.ExecuteQuery(query);
+//        }
+
         public string GetPhaibyHocVienID(int id)
         {           
             string query = string.Format("select HOCVIENPHAI from HSOFTDKBD.DT_HOCVIEN where HOCVIENID = {0}", id);
@@ -115,42 +165,19 @@ namespace DT_CDT.DAO
 
         public DataTable LoadListHVbyID()
         {
-            string query = "SELECT hv.HOCVIENID, HOCVIENHOTEN  ||' - '|| (SELECT KHOAPHONGVIETTAT from HSOFTDKBD.DT_KHOAPHONG kp where kp.KHOAPHONGID = hv.IDKHOAPHONG) ||' - '|| (SELECT dv.DONVITEN from HSOFTDKBD.DT_BENHVIEN dv where dv.DONVIID = hv.IDDONVI) as HOC_VIEN from HSOFTDKBD.DT_HOCVIEN hv";
+            string query = "SELECT hv.HOCVIENID, HOCVIENHOTEN as HOC_VIEN from HSOFTDKBD.DT_HOCVIEN hv ORDER BY HOCVIENHOTEN ASC";
             return DataProvider.Instance.ExecuteQuery(query);
         }
-
-//
-        public List<HocVienByID> GetHVbyID()
-        {
-            List<HocVienByID> list = new List<HocVienByID>();
-            string query = "select hv.HocVienid [id], (select p.PhaiTen from Phai p where p.PHAITEN = hv.HocVienPhai) as [phai],hv.HocVienNamSinh as [Ngay],(select cd.ChucDanhTen from ChucDanh cd where cd.ChucDanhid = hv.IdChucDanh) as [cd], (select kp.KhoaPhongTen from KhoaPhong kp where kp.KhoaPhongid = hv.IdKhoaPhong) as [kp] , (select dv.DonViTen from DonVi dv where dv.DonViid = hv.IdDonVi) as [bv], HocVienHoten  + ' - ' + (select KhoaPhongVietTat from KhoaPhong kp where kp.KhoaPhongid = hv.IdKhoaPhong) + ' - ' + (select dv.DonViTen from DonVi dv where dv.DonViid = hv.IdDonVi) as [HV] from HocVien hv";
-            DataTable data = DataProvider.Instance.ExecuteQuery(query);
-            foreach (DataRow item in data.Rows)
-            {
-                HocVienByID hv = new HocVienByID(item);
-                list.Add(hv);
-            }
-            return list;
-        }
-
+//        public DataTable LoadListHVbyID1()
+//        {
+//            string query = "SELECT hv.HOCVIENID, HOCVIENHOTEN  ||' - '|| (SELECT KHOAPHONGVIETTAT from HSOFTDKBD.DT_KHOAPHONG kp where kp.KHOAPHONGID = hv.IDKHOAPHONG) ||' - '|| (SELECT dv.DONVITEN from HSOFTDKBD.DT_BENHVIEN dv where dv.DONVIID = hv.IDDONVI) as HOC_VIEN from HSOFTDKBD.DT_HOCVIEN hv";
+//            return DataProvider.Instance.ExecuteQuery(query);
+//        }
 
         public DataTable LoadListHocVien()
         {
-            string query = "SELECT HOCVIENID,HOCVIENHOTEN from HSOFTDKBD.DT_HOCVIEN";
+            string query = "SELECT HOCVIENID,HOCVIENHOTEN from HSOFTDKBD.DT_HOCVIEN ORDER BY HOCVIENHOTEN ASC ";
             return DataProvider.Instance.ExecuteQuery(query);
-        }
-//
-        public List<HocVien> GetDSHocVien()
-        {
-            List<HocVien> list = new List<HocVien>();
-            string query = "select * from HocVien";
-            DataTable data = DataProvider.Instance.ExecuteQuery(query);
-            foreach (DataRow item in data.Rows)
-            {
-                HocVien hv = new HocVien(item);
-                list.Add(hv);
-            }
-            return list;
         }
 
         public DataTable LoadListHocVientoTextBox()
@@ -158,22 +185,6 @@ namespace DT_CDT.DAO
             string query = "SELECT HOCVIENHOTEN from HSOFTDKBD.DT_HOCVIEN";
             return DataProvider.Instance.ExecuteQuery(query);
         }
-
-        //
-        public List<HocVien> GetDSHocVientoTextBox()
-        {
-            List<HocVien> list = new List<HocVien>();
-            string query = "select HocVienHoten from HocVien";
-            DataTable data = DataProvider.Instance.ExecuteQuery(query);
-            foreach (DataRow item in data.Rows)
-            {
-                HocVien hv = new HocVien(item);
-                list.Add(hv);
-            }
-            return list;
-        }
-
-  
 
     }
 }

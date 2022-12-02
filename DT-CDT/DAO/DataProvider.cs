@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Oracle.ManagedDataAccess.Client;
 using Oracle.ManagedDataAccess.EntityFramework;
+using System.Windows.Forms;
 
 namespace DT_CDT.DAO
 {
@@ -34,37 +35,38 @@ namespace DT_CDT.DAO
 
         public DataTable ExecuteQuery(string query, object[] parameter = null)
         {
-            DataTable data = new DataTable();
+                DataTable data = new DataTable();
 
-            using (OracleConnection connection = new OracleConnection(connectionSTR))
-            {
-                connection.Open();
-
-                OracleCommand command = new OracleCommand(query, connection);
-
-                if (parameter != null)
+                using (OracleConnection connection = new OracleConnection(connectionSTR))
                 {
-                    string[] listPara = query.Split(' ');
-                    int i = 0;
-                    foreach (string item in listPara)
-                    {
-                        if (item.Contains('@'))
-                        {
-                            command.Parameters.Add(item, parameter[i]);
+                    connection.Open();
 
-                            i++;
+                    OracleCommand command = new OracleCommand(query, connection);
+
+                    if (parameter != null)
+                    {
+                        string[] listPara = query.Split(' ');
+                        int i = 0;
+                        foreach (string item in listPara)
+                        {
+                            if (item.Contains('@'))
+                            {
+                                command.Parameters.Add(item, parameter[i]);
+
+                                i++;
+                            }
                         }
                     }
+
+                    OracleDataAdapter adapter = new OracleDataAdapter(command);
+
+                    adapter.Fill(data);
+
+                    connection.Close();
                 }
 
-                OracleDataAdapter adapter = new OracleDataAdapter(command);
-
-                adapter.Fill(data);
-
-                connection.Close();
-            }
-
-            return data;
+                return data;
+            
         }
 
         public DataSet ExecuteQuery_Dataset(string query, object[] parameter = null)
